@@ -20,6 +20,7 @@ The shipped surface is the organization profile at <https://github.com/organvm-v
 - [`seed.yaml`](seed.yaml) records the orchestration contract for this meta-repo.
 - [`.github/workflows/`](.github/workflows/) contains the minimal CI, dispatch receivers, keepalive pings, service monitoring, and cross-organ handoff workflows.
 - [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) and [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md) provide default issue and PR intake.
+- [`README_STANDARDS.md`](README_STANDARDS.md) defines local README standards as an overlay on the system-wide canonical policy.
 
 ## Live Surfaces
 
