@@ -78,7 +78,7 @@ jobs:
 
       - name: Comment gate failure
         if: steps.gates.outputs.rfc_passed == 'false' || steps.gates.outputs.quality_passed == 'false'
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const rfcPassed = '${{ steps.gates.outputs.rfc_passed }}' === 'true';

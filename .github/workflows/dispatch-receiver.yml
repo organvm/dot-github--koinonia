@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create reading group discussion issue
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const payload = context.payload.client_payload || {};
@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create compliance check issue
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const payload = context.payload.client_payload || {};
@@ -102,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create promotion review issue
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const payload = context.payload.client_payload || {};
