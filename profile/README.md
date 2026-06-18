@@ -30,7 +30,7 @@ This is community as creative infrastructure: the deliberate construction of spa
 
 ORGAN-VI is **operational**. The shared database layer is built with models, migrations, and seed data running on Neon PostgreSQL. CI pipelines (with PostgreSQL service containers) run across all repos. The FastAPI flagship portal (`community-hub`) integrates the salon archive, curricula browser, contributor profiles, full-text search, adaptive syllabi, Atom feeds, and WebSocket live rooms into a single service. **266 tests** across 4 app repos (382 total including the shared library).
 
-> **Note:** `community-hub` is deployed on Render's free tier. The service sleeps after inactivity and may take 30-60 seconds to respond on first request (cold start). A keep-alive workflow pings `/health` every 14 minutes during business hours to minimize this.
+> **Note:** `community-hub` is deployed on Render's free tier. The service sleeps after inactivity and may take 30-60 seconds to respond on first request (cold start). The keep-alive workflow is currently paused, so cold starts may occur after inactivity.
 
 **Repositories:**
 
