@@ -20,15 +20,32 @@ jobs:
         run: |
           set +e
 
-          # Step 1: Basic reachability (with generous timeout for cold start)
-          echo "--- Basic health check ---"
-          HEALTH=$(curl -s --max-time 60 \
-            https://community-hub-8p8t.onrender.com/health)
-          HEALTH_CODE=$?
+          # Step 1: Basic reachability, tolerant of cold starts.
+          #
+          # community-hub runs on Render's free tier, which sleeps after ~15 min
+          # idle. The keepalive workflow only pings 07:00-23:00 UTC, so the 00:00
+          # and 06:00 monitor runs hit a fully-asleep service. A cold start
+          # (container spin-up + FastAPI boot + DB connect) routinely exceeds a
+          # single 60s timeout, producing a "curl exit 28" false-positive alert.
+          # Treat the first request as a warm-up and retry before giving up.
+          echo "--- Basic health check (cold-start tolerant) ---"
+          HEALTH=""
+          HEALTH_CODE=1
+          for attempt in 1 2 3; do
+            echo "Reachability attempt $attempt/3..."
+            HEALTH=$(curl -s --max-time 90 \
+              https://community-hub-8p8t.onrender.com/health)
+            HEALTH_CODE=$?
+            if [ "$HEALTH_CODE" -eq 0 ]; then
+              break
+            fi
+            echo "Attempt $attempt failed (curl exit $HEALTH_CODE); waiting 15s before retry..."
+            sleep 15
+          done
 
           if [ "$HEALTH_CODE" -ne 0 ]; then
             echo "status=unreachable" >> "$GITHUB_OUTPUT"
-            echo "detail=curl exit code $HEALTH_CODE (timeout or DNS failure)" >> "$GITHUB_OUTPUT"
+            echo "detail=curl exit code $HEALTH_CODE after 3 attempts over ~5 min (timeout or DNS failure)" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
