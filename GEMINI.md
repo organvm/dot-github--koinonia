@@ -1,3 +1,9 @@
+## Manual Repository Context
+
+This is the ORGAN-VI Koinonia organization meta-repo for `organvm-vi-koinonia/.github`. It owns the public org profile, community health defaults, issue/PR templates, `seed.yaml`, and org-level automation workflows.
+
+Activation audit [organvm-vi-koinonia/.github#12](https://github.com/organvm-vi-koinonia/.github/issues/12) records the repo as **actually-live** with a **ship-now** decision. See `docs/activation-audit-2026-06-18.md`.
+
 <!-- ORGANVM:AUTO:START -->
 ## System Context (auto-generated — do not edit)
 

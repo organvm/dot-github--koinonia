@@ -31,6 +31,10 @@ Stack: Python 3.11+, SQLAlchemy 2.0+, PostgreSQL, FastAPI, Alembic.
 - Preserve the philosophical voice in Purpose and Philosophy sections — it's intentional
 - System-wide stats (repo count, word count, essay count) come from `registry-v2.json` in the planning corpus
 
+## Activation Audit
+
+Issue [organvm-vi-koinonia/.github#12](https://github.com/organvm-vi-koinonia/.github/issues/12) classifies this repository as **actually-live** with a **ship-now** decision. The public org profile at `https://github.com/organvm-vi-koinonia` is the shipped surface, and the current audit record lives in `docs/activation-audit-2026-06-18.md`.
+
 <!-- ORGANVM:AUTO:START -->
 ## System Context (auto-generated — do not edit)
 

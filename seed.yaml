@@ -1,6 +1,7 @@
 # seed.yaml — Automation Contract for organvm-vi-koinonia/.github
 # Schema: seed/v1.0
 # Generated: 2026-02-12 (AUTONOMY Sprint)
+# Last validated: 2026-06-18 (Activation Audit)
 # Category: infrastructure
 
 schema_version: "1.0"
@@ -13,6 +14,57 @@ metadata:
   implementation_status: PRODUCTION
   tier: infrastructure
   promotion_status: PUBLIC_PROCESS
-  last_validated: "2026-02-24"
+  frozen_state: actually-live
+  ship_decision: ship-now
+  activation_audit: GH-organvm-vi-koinonia-github-12
+  issue: "https://github.com/organvm-vi-koinonia/.github/issues/12"
+  last_validated: "2026-06-18"
   generated: "2026-02-12"
   sprint: "AUTONOMY"
+
+surfaces:
+  - name: organization_profile
+    url: "https://github.com/organvm-vi-koinonia"
+    source: "profile/README.md"
+    status: live
+    verifier_result: "HTTP 200 reported by activation audit issue #12"
+  - name: flagship_portal
+    url: "https://community-hub-8p8t.onrender.com"
+    status: live
+    owner_repo: community-hub
+  - name: public_process
+    url: "https://organvm-v-logos.github.io/public-process/"
+    status: linked
+
+community_health:
+  code_of_conduct: CODE_OF_CONDUCT.md
+  contributing: CONTRIBUTING.md
+  security: SECURITY.md
+  issue_templates: ".github/ISSUE_TEMPLATE/"
+  pull_request_template: ".github/PULL_REQUEST_TEMPLATE.md"
+
+automation:
+  ci: ".github/workflows/ci-minimal.yml"
+  dispatch_receiver: ".github/workflows/dispatch-receiver.yml"
+  essay_intake: ".github/workflows/essay-to-community.yml"
+  community_milestone_dispatch: ".github/workflows/community-to-kerygma.yml"
+  service_monitor: ".github/workflows/monitor.yml"
+  keepalive: ".github/workflows/keepalive.yml"
+  dependency_updates: ".github/dependabot.yml"
+
+subscriptions:
+  - event: essay-published
+    source: ORGAN-V
+    action: Create reading-group curriculum review issue
+  - event: governance-updated
+    source: ORGAN-IV
+    action: Create ORGAN-VI compliance review issue
+  - event: promotion-recommended
+    source: META
+    action: Create promotion review issue
+
+produces:
+  - event: community-milestone
+    target: ORGAN-VII
+    workflow: ".github/workflows/community-to-kerygma.yml"
+    gate: "community-approved label, 7-day RFC age, quality-threshold label"
