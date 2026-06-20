@@ -31,15 +31,5 @@ The shipped surface is the organization profile at <https://github.com/organvm-v
 ## Local Validation
 
 ```bash
-python3 - <<'PY'
-from pathlib import Path
-import yaml
-
-for path in sorted(Path(".").glob("**/*.yml")) + sorted(Path(".").glob("**/*.yaml")):
-    if ".git" not in path.parts:
-        yaml.safe_load(path.read_text())
-        print(f"valid YAML: {path}")
-PY
-
-git grep -nP 'sk-[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{36}|AKIA[A-Z0-9]{16}' -- ':!.github' || true
+make test
 ```
