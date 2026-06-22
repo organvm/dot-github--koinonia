@@ -1,0 +1,5 @@
+{
+  "schema": "value-repos/v1",
+  "description": "Repos discovered to hold ranked latent value, promoted into the build-out tier.",
+  "ranked": ["organvm/dot-github--koinonia"]
+}
